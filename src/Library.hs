@@ -151,4 +151,7 @@ data Nodo = Nulo | Nodo {
     der:: Nodo
 } 
 
-arbolito = Nodo 2 (Nodo 3 Nulo Nulo) (Nodo 6 (Nodo 1 Nulo Nulo) Nulo)
+
+arbolito = Nodo 6 (Nodo 1 Nulo Nulo) Nulo
+
+arbol1 = Nodo 2 (Nodo 3 Nulo Nulo) arbolito
