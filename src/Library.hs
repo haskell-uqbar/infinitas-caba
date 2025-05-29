@@ -143,10 +143,12 @@ suma:: Item -> Number
 suma Nada = 0
 suma (Algo x sig) = x + suma sig
 
---puedeJugar perro otroPerro = length perro > length otroPerro
 
---f condicion perro perros = filter (condicion perro) perros 
 
---f puedenJugar sultan perrosDeEjemplo
---f (\ p ->not.puedenJugar p ) sultan perrosEjemplo
---f (\ p1 p2 -> tamaño p1 > tamaño p2) sultan perrosEjemplo
+data Nodo = Nulo | Nodo {
+    elemento :: Number,
+    izq::Nodo,
+    der:: Nodo
+} 
+
+arbolito = Nodo 2 (Nodo 3 Nulo Nulo) (Nodo 6 (Nodo 1 Nulo Nulo) Nulo)
