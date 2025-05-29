@@ -31,6 +31,8 @@ f2 :: [Number] -> Number
 f2 [] = 0
 f2 (x:xs) = x + f2 xs
 
+f2' lista = foldl (+) 0 lista
+
 -- multiplica a todos por 56
 f3 :: [Number] -> [Number]
 f3 [] = []
@@ -81,18 +83,32 @@ esLimpia (Ciudad f l) = l > 8
 limpiar :: Number -> Ciudad -> Ciudad
 limpiar n ciudad = ciudad{limpieza = limpieza ciudad * n}
 
+limpiarAlReves ::  Ciudad -> Number -> Ciudad
+limpiarAlReves ciudad n = ciudad{limpieza = limpieza ciudad * n}
+
+
 -- limpia la ciudad con valor 3 y luego 2
 limpiarRepetido :: Ciudad -> Ciudad
 limpiarRepetido ciudad = limpiar 2 (limpiar 3 ciudad)
 
 -- limpia la ciudad tambien dos veces, pero con valores variables 
 limpiarRepetidoVariable :: Number -> Number -> Ciudad -> Ciudad
-limpiarRepetidoVariable v1 v2 ciudad = limpiar v2 (limpiar v1 ciudad)
+--limpiarRepetidoVariable v1 v2 ciudad = limpiar v2 (limpiar v1 ciudad)
+limpiarRepetidoVariable v1 v2 = limpiar v2. limpiar v1
+
 
 limpiarSucesivamente:: [Number] -> Ciudad -> Ciudad
 limpiarSucesivamente valores ciudad = foldr limpiar ciudad valores
 
+f9 _ e [] = e
+f9 f e (x:xs) = f x (f9 f e xs)
 
+f10 f e [] = e
+f10 f e (x:xs) = f10 f (f e x) xs 
+
+
+cordoba  = Ciudad "alfajores ricos" 1
+bsas = Ciudad "viva bs as" 4 
 -- Evaluacion diferida
 -- ejemplos de consola:
 
@@ -138,7 +154,6 @@ primero = Algo 100 intermedio
 
 otroPrimero = Algo 200 intermedio
 
-
 suma:: Item -> Number
 suma Nada = 0
 suma (Algo x sig) = x + suma sig
@@ -147,7 +162,7 @@ suma (Algo x sig) = x + suma sig
 
 data Nodo = Nulo | Nodo {
     elemento :: Number,
-    izq::Nodo,
+    izq:: Nodo,
     der:: Nodo
 } 
 
