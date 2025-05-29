@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "caba:lib"
+
+    - path: "./test"
+      component: "caba:test:caba-test"
