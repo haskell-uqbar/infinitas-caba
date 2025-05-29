@@ -5,45 +5,61 @@ import Test.Hspec (xcontext)
 doble :: Number -> Number
 doble numero = numero + numero
 
+
 factorial :: Number -> Number
 factorial 0 = 1
 factorial n = n * factorial (n-1)
+
+f [] = 0
+f [x] = x
+f (cabeza:(2:_)) = cabeza * 10
+f (_:(segundaCabeza:_)) = segundaCabeza
+
+
+
 
 cantidadElementos :: [a] -> Number
 cantidadElementos [] = 0
 cantidadElementos (_:xs) = 1 + cantidadElementos xs
 
---last
 f1 :: [a] -> a
 f1 [x] = x
 f1 (_:xs) = f1 xs
 
---sum
+--sumatoria
 f2 :: [Number] -> Number
 f2 [] = 0
 f2 (x:xs) = x + f2 xs
 
--- multiplicar lista por 56
+-- multiplica a todos por 56
 f3 :: [Number] -> [Number]
 f3 [] = []
 f3 (x:xs) = x * 56 : f3 xs
 
--- multiplicar lista por un numero
-f4 :: Number -> [Number] -> [Number]
-f4 n [] = []
-f4 n (x:xs) = x * n : f4 n xs
+--f3  = f4 56 
 
--- map
+--multiplica a todos por el nro dado
+f4 :: Number -> [Number] -> [Number]
+--f4 n [] = []
+--f4 n (x:xs) = x * n : f4 n xs
+
+
+f4 n = f5 (* n) 
+
+--map
 f5 :: (a -> b) -> [a] -> [b]
 f5 f [] = []
 f5 f (x:xs) = f x : f5 f xs
 
--- any / all
+-- any
 f6 :: (t -> Bool) -> [t] -> Bool
-f6 f [] = True
+f6 f [] = False
 f6 f (x:xs) = f x || f6 f xs
---f6 f (x:xs) = f x && f6 f xs
 
+-- all
+f6' :: (t -> Bool) -> [t] -> Bool
+f6' f [] = True
+f6' f (x:xs) = f x && f6' f xs
 
 otra :: (Number, Bool) -> Bool
 otra (3,True) = True
@@ -127,9 +143,9 @@ suma:: Item -> Number
 suma Nada = 0
 suma (Algo x sig) = x + suma sig
 
-puedeJugar perro otroPerro = length perro > length otroPerro
+--puedeJugar perro otroPerro = length perro > length otroPerro
 
-f condicion perro perros = filter (condicion perro) perros 
+--f condicion perro perros = filter (condicion perro) perros 
 
 --f puedenJugar sultan perrosDeEjemplo
 --f (\ p ->not.puedenJugar p ) sultan perrosEjemplo
